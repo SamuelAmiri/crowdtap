@@ -42,6 +42,10 @@ gem 'gmaps4rails'
 
 gem 'underscore-rails'
 
+gem 'brewery_db'
+
+gem 'httparty'
+
 group :development, :test do
   # Call 'binding 'pry' ' anywhere in the code to stop execution and get a debugger console. Be
   # Sure to include 'require pry' .

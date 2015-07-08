@@ -7,5 +7,10 @@ class StaticsController < ApplicationController
 		  marker.lng restaurant.long
 		  marker.infowindow restaurant.name
 		end
+		
+		@beer = Beer.search(params[:search_term])
+		
 	end
+
+	
 end
