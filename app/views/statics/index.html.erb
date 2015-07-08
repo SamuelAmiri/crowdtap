@@ -17,3 +17,18 @@ function displayOnMap(position){
   handler.map.centerOn(marker);
 };
 </script>
+
+<%= form_tag({:controller=>"statics", :action=>"index"}, method: :get) do %>
+	<%= text_field_tag :search_term %>
+    <%= submit_tag 'Search for a Beer', name: nil %>
+<% end %>
+
+<% if @beer.present?%>
+	<% if @beer['data'].present? %>
+		<% @beer['data'].each do |f|  %>
+			<%= image_tag((f['labels']['medium'] if f['labels'].present?), class: "label_icon") %>
+			
+			<br>
+		<% end %>
+	<% end %>
+<% end %>

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   resources :beers
   resources :restaurants
+  resources :statics
 
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'statics#index'
+  root 'statics#index' 
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
