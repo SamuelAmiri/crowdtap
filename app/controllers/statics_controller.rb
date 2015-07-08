@@ -1,10 +1,10 @@
 class StaticsController < ApplicationController
 
 	def index
-		
-		@beer = Beer.search(params[:search_term])
+		remspace = params[:search_term].downcase.tr!(" ", "_")
+		@beer = Beer.search(remspace)
 
 	end
 
-	
+
 end
