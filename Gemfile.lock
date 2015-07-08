@@ -231,6 +231,7 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
+<<<<<<< HEAD
   bootstrap-sass (~> 3.3.4)
   capybara
   coffee-rails (~> 4.1.0)
@@ -241,6 +242,13 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   omniauth-facebook
+=======
+  capybara
+  coffee-rails (~> 4.1.0)
+  factory_girl_rails
+  jbuilder (~> 2.0)
+  jquery-rails
+>>>>>>> master
   pg
   pry-byebug
   pry-rails
