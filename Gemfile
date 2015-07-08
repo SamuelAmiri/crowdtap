@@ -33,6 +33,10 @@ gem 'pg'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'gmaps4rails'
+
+gem 'underscore-rails'
+
 group :development, :test do
   # Call 'binding 'pry' ' anywhere in the code to stop execution and get a debugger console. Be
   # Sure to include 'require pry' .
