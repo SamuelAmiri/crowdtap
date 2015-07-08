@@ -1,7 +1,11 @@
 FactoryGirl.define do
   factory :user do
-    name "MyString"
-email "MyString"
+    provider "MyString"
+uid "MyString"
+name "MyString"
+location "MyString"
+image_url "MyString"
+url "MyString"
   end
 
 end
