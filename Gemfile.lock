@@ -209,13 +209,13 @@ PLATFORMS
 
 DEPENDENCIES
   better_errors
-  jbuilder (~> 2.0)
-  jquery-rails
   bootstrap-sass (~> 3.3.4)
   capybara
   coffee-rails (~> 4.1.0)
   factory_girl_rails
   gmaps4rails
+  jbuilder (~> 2.0)
+  jquery-rails
   jquery-turbolinks
   pg
   pry-byebug
