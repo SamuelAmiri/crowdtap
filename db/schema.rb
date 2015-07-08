@@ -11,16 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20150708005301) do
-=======
-ActiveRecord::Schema.define(version: 0) do
->>>>>>> googlemaps
+ActiveRecord::Schema.define(version: 20150708014913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
   create_table "beerrestaurants", force: :cascade do |t|
     t.integer  "beer_id"
     t.integer  "restaurant_id"
@@ -47,8 +42,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "beerrestaurants", "beers"
   add_foreign_key "beerrestaurants", "restaurants"
-=======
->>>>>>> googlemaps
 end
