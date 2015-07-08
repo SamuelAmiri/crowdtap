@@ -4,9 +4,11 @@
 
 <script type="text/javascript">
 var handler = Gmaps.build('Google');
-handler.buildMap({ internal: {id:'geolocation'}}, function(){
+handler.buildMap({ provider: {}, internal: {id:'geolocation'}}, function(){
   if(navigator.geolocation)
-  navigator.geolocation.getCurrentPosition(displayOnMap);
+    navigator.geolocation.getCurrentPosition(displayOnMap);
+
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
 });
 
 function displayOnMap(position){
@@ -16,4 +18,5 @@ function displayOnMap(position){
   });
   handler.map.centerOn(marker);
 };
+
 </script>
