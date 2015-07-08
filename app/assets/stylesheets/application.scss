@@ -1,0 +1,91 @@
+    /*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+
+ */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+HTML {
+    position: relative;
+    min-height: 100%;
+}
+
+BODY {
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    margin-top: 10vh;
+}
+
+
+
+.thesearch {  height:auto; 
+    margin:0 auto; 
+    width:60%; 
+}
+.carousel_slide {
+    margin: 0 auto;
+}
+.carousel-control {
+  &.left, &.right {
+    background: transparent;
+    @include reset-filter();
+    }
+}
+/*full width container*/
+.block {
+    margin-left: -100px;
+    margin-right: -100px;
+}
+
+.col {
+    border: 1px solid black;
+}
+
+h2 {    font-size: 50px;
+    width: 700px;
+}
+#bio {
+    border: 2px solid lightgrey;
+    width: 600px;
+    border-radius: 5px;
+}
+.profileskills {
+    width: 900px;
+    margin-left: -250px;
+}
+a.skillsbtn {
+    color: #3399FF;
+}
+
+
+.profpic {
+    width: 250px;
+    height: 250px;
+    font-size: 30px; 
+}
+.form {
+    text-align: center;
+}
+.formfield {
+    border-radius: 3px;
+}
+.formtext {
+    font-size: 25px; 
+}
+.greeting { 
+    font-size: 50px; 
+}

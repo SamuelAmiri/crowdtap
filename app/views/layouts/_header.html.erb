@@ -1,0 +1,43 @@
+<!-- NAVIGATION BAR -->
+<nav class="navbar navbar-fixed-top navbar-default" id="navbar-contain">     
+  <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <div class="col-md-1"></div>
+<!-- LOGO -->
+      <div class="logo"><a href="/">TapGabBeer</a></div>
+  </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+<!-- STATIC PAGES --> 
+      <li><a href="/statics/contact">CONTACT US</a></li>
+      <li><a href="/statics/about">HOW IT WORKS</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+<!-- TRANSACTION HISTORY DROPDOWN -->
+      <% if current_user %>
+<!-- USER ACCOUNT DROPDOWN -->
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Account <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+          <% if current_user.servicer == true %>
+            <li><a href="/users/<%= current_user.id %>/edit">Edit Profile</a></li>
+            <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
+            <li><a href="/auth/logout">Log Out</a></li>
+          <% else %>
+            <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
+            <li><a href="/auth/logout">Log Out</a></li> 
+          <% end %>
+          </ul>
+        </li>  
+<!-- SHOW FACEBOOK AND LINKEDIN LOGINS IF NO CURRENT USER -->
+      <% else %> 
+        <li><a href="/auth/facebook">LOGIN VIA FACEBOOK</a></li>
+      <% end %>       
+    </ul>
+  </div>
+</nav>

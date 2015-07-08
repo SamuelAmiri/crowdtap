@@ -1,0 +1,142 @@
+.image { 
+   position: relative; 
+   width: 100vw;
+   height: 90vh;
+   overflow: hidden;
+}
+
+.caption h4 { 
+   position: absolute; 
+   top: 18vw; 
+   left: 0; 
+   width: 100%;
+   color: white;
+   font-family: 'Lato', sans-serif;
+   font-weight: 400;
+   text-align: center;
+}
+
+.caption h2 { 
+   position: absolute; 
+   top: 12vw; 
+   left: 0; 
+   width: 100%; 
+   color: white;
+   font-family: 'Raleway', sans-serif;
+   font-weight: 700;
+   text-align: center;
+}
+
+.searchbox {
+	background-color: rgba(0, 0, 0, 0.7);
+    height: 15vh;
+    vertical-align: center;
+    margin: 0 auto;
+    position: absolute;
+    top: 80vh;
+}
+
+.searchpartial {
+	margin: 0 auto;
+	position: relative;
+  padding: 2vw;
+
+}
+
+
+.will-hide, .will-hide2 {
+    display: none;
+}
+div.transbox {
+    margin: 50px;
+    background-color: #ffffff;
+    border: 1px solid black;
+    opacity:0.8;
+    filter:alpha(opacity=60); /* For IE8 and earlier */
+}
+div.transbox p {
+    margin: 10px;
+    color: #000000;
+}
+
+.dropdown-menu {
+    margin-left: 24vw;
+}
+
+
+.dropdown-submenu>.dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -6px;
+    margin-left: -1px;
+    -webkit-border-radius: 0 3px 3px 3px;
+    -moz-border-radius: 0 3px 3px;
+    border-radius: 0 3px 3px 3px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+    display: block;
+}
+
+.dropdown-submenu>a:after {
+    display: block;
+    content: " ";
+    float: right;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    border-left-color: #ccc;
+    margin-top: 5px;
+    margin-right: -10px;
+}
+
+.dropdown-submenu:hover>a:after {
+    border-left-color: #fff;
+}
+
+.dropdown-submenu.pull-left {
+    float: none;
+}
+
+.dropdown-submenu.pull-left>.dropdown-menu {
+    left: -100%;
+    margin-left: 8px;
+    -webkit-border-radius: 3px 3px 3px 3px;
+    -moz-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.btn {
+  border-radius: 2px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+}
+
+.btn-primary {
+    background-color: white;
+    color: gray;
+    border-radius: 2px;
+}
+.btn-primary:hover {
+	background-color: white;
+	color: #F60;  
+}
+
+.form-control {
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+	border-radius: 2px;
+
+}
+
+.btn-warning {
+  background-color: #FF9766;
+}
+.btn-warning:hover {
+  background-color: #EC7D48;
+
+}
+.subcategory {
+  background-color: white;
+}
