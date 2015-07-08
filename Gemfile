@@ -34,8 +34,9 @@ gem 'pg'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
+gem 'figaro'
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'omniauth-facebook'
 
 gem 'gmaps4rails'
 
