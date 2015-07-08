@@ -5,6 +5,7 @@ class StaticsController < ApplicationController
 		@hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
 		  marker.lat restaurant.lat
 		  marker.lng restaurant.long
+		  marker.infowindow restaurant.name
 		end
 	end
 end
