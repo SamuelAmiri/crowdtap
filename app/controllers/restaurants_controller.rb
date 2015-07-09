@@ -4,7 +4,10 @@ class RestaurantsController < ApplicationController
   # GET /restaurants
   # GET /restaurants.json
   def index
-    @restaurants = Restaurant.all
+    @client = GooglePlaces::Client.new(ENV["googleplaces_api_key"])
+    searchTerm = "Santa Monica"
+    query = "bars near " + searchTerm
+    @list = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
   end
 
   # GET /restaurants/1
