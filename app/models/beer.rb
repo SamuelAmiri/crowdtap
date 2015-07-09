@@ -4,7 +4,7 @@ class Beer < ActiveRecord::Base
 
 	def self.search term
 		
-		uri = "http://api.brewerydb.com/v2/search?q=#{term}&type=beer&key=#{ENV['brewerydb_api_key']}"
+		uri = "http://api.brewerydb.com/v2/search?q='#{term}'&type=beer&key=#{ENV['brewerydb_api_key']}"
 
 		HTTParty.get uri
 	end

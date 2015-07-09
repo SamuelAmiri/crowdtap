@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+</head>
+<body>
 
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
+  <%= form_tag({:controller=>"restaurants", :action=>"index"}, method: :get) do %>
+      <%= text_field_tag :search_term %>
+      <%= submit_tag 'Search for a Bar', name: nil %>
+  <% end %>
 
-<p>
-  <strong>Lat:</strong>
-  <%= @restaurant.lat %>
-</p>
-
-<p>
-  <strong>Long:</strong>
-  <%= @restaurant.long %>
-</p>
-
-<p>
-  <strong>Beer ids:</strong>
-  <%= @restaurant.beer_ids %>
-</p>
-
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+  <% if @restaurant.present? %>
+    <%  @restaurant.each do |x| %>
+      <%= x.name %> <br/>
+      <%= x.vicinity %> <br/>
+      <%= x.lat %> <br/>
+      <%= x.lng %> <br/>
+      <%= x.icon %> <br/>
+      <%= x.types %> <br/>
+      <%= x.name %> <br/>
+      <br>
+      <br>
+      <br>
+    <% end %>
+  <% end %>
+</body>
+</html>

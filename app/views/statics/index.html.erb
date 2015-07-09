@@ -13,7 +13,6 @@
 		<% @beer['data'].each do |f|  %>
 			<%= image_tag((f['labels']['medium'] if f['labels'].present?), class: "label_icon") %>
 			
-			<br>
 		<% end %>
 	<% end %>
 <% end %>
