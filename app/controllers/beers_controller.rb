@@ -25,16 +25,11 @@ class BeersController < ApplicationController
   # POST /beers.json
   def create
     @beer = Beer.new(beer_params)
-
-    respond_to do |format|
-      if @beer.save
-        format.html { redirect_to @beer, notice: 'Beer was successfully created.' }
-        format.json { render :show, status: :created, location: @beer }
-      else
-        format.html { render :new }
-        format.json { render json: @beer.errors, status: :unprocessable_entity }
-      end
-    end
+          if @beer.save
+              redirect_to restaurants_path
+          else
+              render :show
+          end
   end
 
   # PATCH/PUT /beers/1
@@ -69,6 +64,6 @@ class BeersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params
-      params.require(:beer).permit(:name, :brewery, :style, :restaurant_ids)
+      params.require(:beer).permit(:name, :brewery, :style, restaurant_ids:[])
     end
 end

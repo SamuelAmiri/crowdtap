@@ -2,16 +2,22 @@ class RestaurantsController < ApplicationController
 
 
   def index
+
     if params[:search_term].present?
       @client = GooglePlaces::Client.new(ENV["googleplaces_api_key"])
       searchTerm = params[:search_term]
       query =  searchTerm + " near Santa Monica"
-      @restaurant = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
+      @place = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
     end
   end
 
   def show
   	@restaurant = Restaurant.find(params[:id])
+  	if params[:search_term].present?
+			remspace = params[:search_term].downcase.tr(" ", "_")
+			@beer = Beer.search(remspace)
+	end
+
   end
 
   def new
@@ -29,7 +35,9 @@ class RestaurantsController < ApplicationController
 
   private
   	def restaurant_params
-  		params.require(:restaurant).permit(:name, :lat, :long, :place_id)
+  		
+  		params.require(:restaurant).permit(:name, :lat, :long, :place_id, beer_ids:[])
+
   	end
 
 end

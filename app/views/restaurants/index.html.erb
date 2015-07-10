@@ -10,15 +10,24 @@
       <%= submit_tag 'Search for a Bar', name: nil %>
   <% end %>
 
+<<<<<<< HEAD
   <% if @restaurant.present? %>
     <%=  @restaurant.each do |x| %>
+=======
+  <% if @place.present? %>
+    <%  @place.each do |x| %>
+>>>>>>> cd1b621b9e88a809498178931fbaed4f8a1da1ba
       <%= x.name %> <br/>
       <%= x.vicinity %> <br/>
       <%= x.lat %> <br/>
       <%= x.lng %> <br/>
       <%= x.icon %> <br/>
       <%= x.types %> <br/>
+<<<<<<< HEAD
       <%= x.place_id %>
+=======
+
+>>>>>>> cd1b621b9e88a809498178931fbaed4f8a1da1ba
         <%= form_tag({:controller=>"restaurants", :action=>"create"}, method: :post) do %>
           <%= hidden_field_tag "restaurant[name]", x.name %>
           <%= hidden_field_tag "restaurant[lat]", x.lat %>

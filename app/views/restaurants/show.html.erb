@@ -5,6 +5,23 @@
 </head>
 <body>
 
+<h2> Find some Beers</h2>
+<%= form_tag({:controller=>"restaurants", :action=>"show"}, method: :get) do %>
+	<%= text_field_tag :search_term %>
+    <%= submit_tag 'Search for a Beer', name: nil %>
+<% end %>
+
+<% if @beer.present?%>
+	<% if @beer['data'].present? %>
+		<% @beer['data'].each do |f|  %>
+			<%= image_tag((f['labels']['medium'] if f['labels'].present?), class: "label_icon") %>
+			  <%= form_tag({:controller=>"beers", :action=>"create"}, method: :post) do %>
+		          <%= hidden_field_tag "beer[name]", f['name'] %>
+		      	  <%= submit_tag 'Add Beer', name: nil %>
+      		  <% end %>
+		<% end %>
+	<% end %>
+<% end %>
 
 
 </body>
