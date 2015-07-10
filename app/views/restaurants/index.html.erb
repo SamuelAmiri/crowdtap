@@ -10,8 +10,8 @@
       <%= submit_tag 'Search for a Bar', name: nil %>
   <% end %>
 
-  <% if @restaurant.present? %>
-    <%  @restaurant.each do |x| %>
+  <% if @place.present? %>
+    <%  @place.each do |x| %>
       <%= x.name %> <br/>
       <%= x.vicinity %> <br/>
       <%= x.lat %> <br/>
@@ -19,6 +19,7 @@
       <%= x.icon %> <br/>
       <%= x.types %> <br/>
       <%= x.name %> <br/>
+
       <br>
       <br>
       <br>
