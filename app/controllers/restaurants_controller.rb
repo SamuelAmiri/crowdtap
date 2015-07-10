@@ -19,9 +19,9 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-      @restaurant = Restaurant.new(restaurant_params)
+      @restaurant = Restaurant.find_or_create_by(restaurant_params)
           if @restaurant.save
-              redirect_to restaurant_path(@restaurant.id)
+              redirect_to restaurant_path(@restaurant)
           else
               render :index
           end
@@ -29,7 +29,7 @@ class RestaurantsController < ApplicationController
 
   private
   	def restaurant_params
-  		params.require(:restaurant).permit(:name, :lat, :long)
+  		params.require(:restaurant).permit(:name, :lat, :long, :place_id)
   	end
 
 end

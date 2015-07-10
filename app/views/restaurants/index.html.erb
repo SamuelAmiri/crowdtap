@@ -11,17 +11,19 @@
   <% end %>
 
   <% if @restaurant.present? %>
-    <%  @restaurant.each do |x| %>
+    <%=  @restaurant.each do |x| %>
       <%= x.name %> <br/>
       <%= x.vicinity %> <br/>
       <%= x.lat %> <br/>
       <%= x.lng %> <br/>
       <%= x.icon %> <br/>
       <%= x.types %> <br/>
+      <%= x.place_id %>
         <%= form_tag({:controller=>"restaurants", :action=>"create"}, method: :post) do %>
           <%= hidden_field_tag "restaurant[name]", x.name %>
           <%= hidden_field_tag "restaurant[lat]", x.lat %>
           <%= hidden_field_tag "restaurant[long]", x.lng %>
+          <%= hidden_field_tag "restaurant[place_id]", x.place_id %>
         <%= submit_tag 'Add some Beers', name: nil %>
       <% end %>
       <br>
