@@ -5,7 +5,7 @@
 </head>
 <body>
 
-<h2> Find some Beers</h2>
+<h2> <%= @restaurant.name %></h2>
 <%= form_tag({:controller=>"restaurants", :action=>"show"}, method: :get) do %>
 	<%= text_field_tag :search_term %>
     <%= submit_tag 'Search for a Beer', name: nil %>
@@ -21,6 +21,10 @@
       		  <% end %>
 		<% end %>
 	<% end %>
+<% end %>
+<h4>What's on Tap?</h4>
+<% @restaurant.beers.each do |f| %>
+	<%= f.name %>
 <% end %>
 
 
