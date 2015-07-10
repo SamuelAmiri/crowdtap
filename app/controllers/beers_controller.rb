@@ -24,9 +24,11 @@ class BeersController < ApplicationController
   # POST /beers
   # POST /beers.json
   def create
+    @restaurant = Restaurant.find(params[:id])
     @beer = Beer.new(beer_params)
           if @beer.save
-              redirect_to restaurants_path
+              @beer.restaurants << @restaurant
+              redirect_to restaurant_path(@restaurant.id)
           else
               render :show
           end

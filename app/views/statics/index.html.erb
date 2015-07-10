@@ -8,6 +8,8 @@
     <%= submit_tag 'Search for a Beer', name: nil %>
 <% end %>
 
+<%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
+
 <% if @beer.present?%>
 	<% if @beer['data'].present? %>
 		<% @beer['data'].each do |f|  %>
