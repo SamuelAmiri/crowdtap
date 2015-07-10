@@ -14,6 +14,7 @@ class StaticsController < ApplicationController
 		end
 
 	end
-
+	def show
+	end
 
 end

@@ -21,6 +21,7 @@
 <!-- TRANSACTION HISTORY DROPDOWN -->
       <% if current_user %>
 <!-- USER ACCOUNT DROPDOWN -->
+        <li><a href="/restaurants">ADD BEER</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Account <b class="caret"></b></a>
           <ul class="dropdown-menu">
@@ -30,7 +31,7 @@
             <li><a href="/auth/logout">Log Out</a></li>
           <% else %>
             <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
-            <li><a href="/auth/logout">Log Out</a></li> 
+            <li><a href="/logout">Log Out</a></li> 
           <% end %>
           </ul>
         </li>  
