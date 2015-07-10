@@ -17,6 +17,8 @@
 			<%= image_tag((f['labels']['medium'] if f['labels'].present?), class: "label_icon") %>
 			  <%= form_tag({:controller=>"beers", :action=>"create", :id => @restaurant.id}, method: :post) do %>
 		          <%= hidden_field_tag "beer[name]", f['name'] %>
+		          <%= hidden_field_tag "beer[brewery]", f['breweries'][0]["name"] %>
+		    	  <%= hidden_field_tag "beer[style]", f["style"]["shortName"] %>
 		      	  <%= submit_tag 'Add Beer', name: nil %>
       		  <% end %>
 		<% end %>
@@ -25,6 +27,7 @@
 <h4>What's on Tap?</h4>
 <% @restaurant.beers.each do |f| %>
 	<%= f.name %>
+	<br />	
 <% end %>
 
 
