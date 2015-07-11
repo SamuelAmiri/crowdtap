@@ -14,8 +14,7 @@ class RestaurantsController < ApplicationController
   def show
   	@restaurant = Restaurant.find(params[:id])
   	if params[:search_term].present?
-			remspace = params[:search_term].downcase.tr(" ", "_")
-			@beer = Beer.search(remspace)
+			@beer = Beer.search(arams[:search_term])
 	end
 
   end
