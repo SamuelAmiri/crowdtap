@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :beers
   resources :restaurants
   resources :statics
+
+  namespace :api do
+    resources :beers, only: [:index]
+  end
+  resources :beers
+
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
