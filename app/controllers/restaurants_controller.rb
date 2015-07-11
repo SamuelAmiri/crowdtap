@@ -14,7 +14,7 @@ class RestaurantsController < ApplicationController
   def show
   	@restaurant = Restaurant.find(params[:id])
   	if params[:search_term].present?
-			@beer = Beer.search(arams[:search_term])
+			@beer = Beer.search(params[:search_term])
 	end
 
   end
