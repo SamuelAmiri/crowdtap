@@ -5,7 +5,8 @@
 
 <%= form_tag({:controller=>"statics", :action=>"index"}, method: :get) do %>
 	<%= text_field_tag :search_term %>
-    <%= submit_tag 'Search for a Beer', name: nil %>
+  <%= text_field_tag :location %>
+    <%= submit_tag 'Search for a Beer', name: nil %>      
 <% end %>
 
 <%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
