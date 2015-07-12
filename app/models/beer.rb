@@ -8,4 +8,9 @@ class Beer < ActiveRecord::Base
 
 		HTTParty.get uri
 	end
+
+	def self.beer_search search
+	    where('name ILIKE ?', "%#{search}%")
+  	end
+
 end
