@@ -10,13 +10,38 @@
 
 <%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
 
-<% if @beer.present?%>
-	<% if @beer['data'].present? %>
-		<% @beer['data'].each do |f|  %>
-			<%= image_tag((f['labels']['medium'] if f['labels'].present?), class: "label_icon") %>
-		<% end %>
-	<% end %>
+<% if @beer.present? %>
+  <% @beer.each do |f| %>
+    <%= f.name %>   
+  <% end %>
+<% else %>
+  <p>There are no beers containing the term(s) <%= params[:search_term] %>.</p>
 <% end %>
+
+<br>
+<br>
+<% @beer.each do |b|  %>
+  <% b.restaurants.each do |r|  %>
+    <%= r.inspect %>
+  <% end %>
+<% end %>
+
+<%#= @restaurants.inspect %>
+<br>
+<br>
+<%#= @restaurants1.inspect %>
+<br>
+<br>
+<%#= @restaurants1%>
+<br>
+<br>
+<%#= @restaurants1[0][0].lat %>
+<br>
+<br>
+<%#= @hash  %>
+  
+
+
 
 <script type="text/javascript">
 var handler = Gmaps.build('Google');
