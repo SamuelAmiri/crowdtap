@@ -11,9 +11,10 @@
         <script type="text/javascript" src="js/main.js"></script>
         <script src="js/oauth-signature.js"></script>
         <script src="js/angular-dragdrop.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"> </script>
 	</head>
 	<body ng-controller="BeerController as BeerCtrl">
-		{{BeerCtrl.foo}}
 
+	<div id="googleMap" style="width:500px;height:380px;"></div>
 	</body>
 </html>
