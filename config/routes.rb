@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :beers, only: [:index, :show]
-    resources :restaurants, only: [:index]
+    resources :restaurants, only: [:index, :show]
     resources :beerrestaurants, only: [:index]
   end
 
