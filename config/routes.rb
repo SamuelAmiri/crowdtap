@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :statics
 
   namespace :api do
-    resources :beers, only: [:index]
+    resources :beers, only: [:index, :show]
     resources :restaurants, only: [:index]
     resources :beerrestaurants, only: [:index]
   end
