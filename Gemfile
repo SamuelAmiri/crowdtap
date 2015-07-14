@@ -50,6 +50,8 @@ gem 'google_places'
 
 gem 'rspec'
 
+gem 'geocoder'
+
 group :development, :test do
   # Call 'binding 'pry' ' anywhere in the code to stop execution and get a debugger console. Be
   # Sure to include 'require pry' .

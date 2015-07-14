@@ -22,7 +22,7 @@
       <%= x.types %> <br/>
       <%= x.place_id %> <br>
 
-        <%= form_tag({:controller=>"restaurants", :action=>"create"}, method: :post) do %>
+      <%= form_tag({:controller=>"restaurants", :action=>"create"}, method: :post) do %>
           <%= hidden_field_tag "restaurant[name]", x.name %>
           <%= hidden_field_tag "restaurant[lat]", x.lat %>
           <%= hidden_field_tag "restaurant[long]", x.lng %>

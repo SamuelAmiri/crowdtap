@@ -1,12 +1,13 @@
 <div style='width: 800px;'>
-  <div id="geolocation" style='width: 800px; height: 400px;'></div>
+  <div id="geolocation" style='width: 900px; height: 450px;'></div>
 </div>
 
 
 <%= form_tag({:controller=>"statics", :action=>"index"}, method: :get) do %>
-	<%= text_field_tag :search_term %>
-  <%= text_field_tag :location %>
-    <%= submit_tag 'Search for a Beer', name: nil %>      
+	<%= text_field_tag :search_term, params[:search_term], placeholder: 'Enter Beer Name...' %>
+  <%= text_field_tag :location, params[:location], placeholder: 'Location...' %>
+  <%= number_field_tag :range, params[:range], placeholder: 'Distance in Miles' %>
+  <%= submit_tag 'Search for a Beer', name: nil %>      
 <% end %>
 
 <%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
@@ -51,6 +52,8 @@ handler.buildMap({ provider: {}, internal: {id:'geolocation'}}, function(){
     navigator.geolocation.getCurrentPosition(displayOnMap);
 
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
 });
 
 function displayOnMap(position){
@@ -58,7 +61,6 @@ function displayOnMap(position){
     lat: position.coords.latitude,
     lng: position.coords.longitude
   });
-  handler.map.centerOn(marker);
 };
 
 </script>
