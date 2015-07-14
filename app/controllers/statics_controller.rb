@@ -1,33 +1,51 @@
 class StaticsController < ApplicationController
 
 	def index
-		@restaurants1 = []
+	end
 
-		if params[:location].present?
-			@location = params[:location]
-		else 
-			@location = request.location.city
+	def search
+		@restaurants = []
+		@search_term = params[:search_term]
+		@location = params[:location]
+		@range = params[:range]
+		@beer = Beer.beer_search(params[:search_term])
+
+		@beer.each do |b|
+			b.restaurants.near(@location, @range).each do |r|
+				@restaurants << r
+			end
 		end
 
-		if params[:search_term]
-			@beer = Beer.beer_search(params[:search_term]).order("created_at DESC")	
-			@beer.each do |b|
-				b.restaurants.near(@location, params[:range]).each do |r|
-					@restaurants1 << r
-				end
-			end
-
-			@restaurants = Restaurant.all
-			@hash = Gmaps4rails.build_markers(@restaurants1) do |restaurant, marker|
-			  marker.lat restaurant.lat
-			  marker.lng restaurant.long
-			  marker.infowindow restaurant.name
+		if @search_term.empty?
+			flash[:notice] = "You can't search without a search term; please enter a beer and retry!"
+			redirect_to "/"
+		elsif @location.empty?
+			flash[:notice] = "You can't search without a location; please enter a location and retry!"
+			redirect_to "/"
+		elsif @range.empty?
+			flash[:notice] = "You can't search without a distance; please enter a distance and retry!"
+			redirect_to "/"	
+		else
+			if @restaurants.length < 1
+				flash[:notice] = "Sorry! We couldn't find any beer named '#{@search_term}' within #{@range} miles of #{@location}."
+				redirect_to "/"
+			else
+				search_map(@restaurants)
 			end
 		end
 
 	end
 
-	def show
+	private
+
+	# sets up the map hash for gmaps4rails
+	def search_map(restaurants)
+		@restaurants = restaurants
+		@hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+			  marker.lat restaurant.lat
+			  marker.lng restaurant.long
+			  marker.infowindow "<a href='/restaurants/"+"#{restaurant.id}"+"'>#{restaurant.name}</a>"
+		end
 	end
 
 end

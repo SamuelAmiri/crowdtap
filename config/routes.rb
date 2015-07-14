@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :beerrestaurants, only: [:index]
   end
 
+  get "/search" => "statics#search"
 
   resources :beers
 

@@ -3,23 +3,19 @@
   <%= render "/layouts/home_map"  %>
 </div>
 
-<%= form_tag({:controller=>"statics", :action=>"index"}, method: :get) do %>
-	<%= text_field_tag :search_term, params[:search_term], placeholder: 'Enter Beer Name...' %>
-  <%= text_field_tag :location, params[:location], placeholder: 'Location...' %>
-  <%= number_field_tag :range, params[:range], placeholder: 'Distance in Miles' %>
-  <%= submit_tag 'Search for a Beer', name: nil %>      
-<% end %>
-
+<div class="ey_nav_div">  
+  <%= form_tag("/search", method: :get) do %>
+  	<%= text_field_tag :search_term, params[:search_term], placeholder: 'Enter Beer Name...', class: "form-control"  %>
+    <%= text_field_tag :location, params[:location], placeholder: 'Location...', class: "form-control"  %>
+    <%= number_field_tag :range, params[:range], placeholder: 'Distance in Miles', class: "form-control"  %>
+    <%= submit_tag 'Search for a Beer', name: nil, :class => "btn btn-info" %>      
+  <% end %>
+</div>
+<br>
+<br>
+<br>
 <%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
 
-
-  <% if @beer.present?  %>
-    <% @beer.each do |f| %>
-      <%= f.name %>   
-    <% end %>
-  <% else %>
-    <p>There are no beers containing the term(s) <%= params[:search_term] %>.</p>
-  <% end %>
 
 
 

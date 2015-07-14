@@ -1,0 +1,34 @@
+<div style="width:100%;">
+  <div id="map" style="width: 100%; height: 500px;">
+    <%= render "search_map" %>
+  </div>
+</div>
+<div class="col-md-16 col-md-offset-1">
+  <h2>
+    <%= "Restaurants Near: #{params[:location].titleize}" %>
+  </h2>
+  <table class="table table-striped table-hover">
+    <thead>
+      <th>Beer Name</th>
+      <th>Restaurant</th>
+      <th>Locations</th>
+    </thead>
+    <tbody>
+      <% @beer.each do |b| %>
+          <tr>
+            <td>
+            <%= link_to b.name, beers_path(b), method: "get" %>
+            </td>   
+              <td>
+                <% b.restaurants.each do |r| %>
+                  <%= link_to r.name, restaurants_path(r), method: "get" %>
+              </td>
+              <td>
+                <%= r.address %>
+              </td>
+            <% end %>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
