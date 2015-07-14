@@ -1,14 +1,8 @@
 <div style='width: 100%;'>
-  <div id="geolocation" style='width: 1200px; height: 600px;'></div>
+  <div id="geolocation" style='height: 550px;'></div>
   <%= render "/layouts/home_map"  %>
 </div>
 
-<%= form_tag({:controller=>"statics", :action=>"index"}, method: :get) do %>
-	<%= text_field_tag :search_term, params[:search_term], placeholder: 'Enter Beer Name...' %>
-  <%= text_field_tag :location, params[:location], placeholder: 'Location...' %>
-  <%= number_field_tag :range, params[:range], placeholder: 'Distance in Miles' %>
-  <%= submit_tag 'Search for a Beer', name: nil %>      
-<% end %>
 
 <%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
 
