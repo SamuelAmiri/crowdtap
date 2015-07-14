@@ -1,27 +1,34 @@
-
-
+    
 // The init function to load google map on page load
 google.maps.event.addDomListener(window, 'load', initialize_my_map)
 google.maps.event.addDomListener(window, 'page:load', initialize_my_map)
 // Define a function that should be ran on load (yay function hoisting)
-function initialize_my_map() {
 
+function initialize_my_map() {
+    $.get("http://localhost:3000/api/beers", function(results){
+        var beers = results
+        console.log(beers)
+    })
     // Find the map DIV (if it exists)
     var el = document.getElementById('googleMap')
 
     // Bail out if there's not an address map on the page
     if(!el) return
 
-
+    // var result = $.grep(myArray, function(e){ return e.id == id; });
     // Get the page's marker data from the JSON API
-    var url = window.location.origin + window.location.pathname + ".json" + window.location.search 
-    console.log(url)
-    console.log (window.location.origin)
-    console.log (window.location.pathname)
+    //var url = window.location.origin + window.location.pathname + ".json" + window.location.search 
+    var url = "http://localhost:3000/api/beers/1"
+    // console.log(url)
+    // console.log (window.location.origin)
+    // console.log (window.location.pathname)
     // Ajax the data URL (this retrieves the contents of that JSON url above)
-    //$.get(url, function(results){
-        var results = {latitude: 34.003571, longitude: -118.482862}
-        console.log("Data returned from " + url, results)
+    $.get(url, function(results){
+        
+        for (i=0;i<results.length;i++){
+            console.log(results[i].lat, results[i].long)
+        }
+
 
         // Wrap the data in an array if it's not one already
         if(!(results instanceof Array)) results = [results] 
@@ -34,7 +41,7 @@ function initialize_my_map() {
         }
         var map = new google.maps.Map(el, mapProps)
 
-        cvar oms = new OverlappingMarkerSpiderfier(map);
+        var oms = new OverlappingMarkerSpiderfier(map);
         // Bounds are cool because they center our map for us
         var bounds = new google.maps.LatLngBounds()
         var infowindow = new google.maps.InfoWindow({
@@ -45,7 +52,7 @@ function initialize_my_map() {
         
                 
         for (i = 0; i < results.length; i++) {
-            var markerPosition = new google.maps.LatLng(results[i].latitude, results[i].longitude)
+            var markerPosition = new google.maps.LatLng(results[i].lat, results[i].long)
             var marker = new google.maps.Marker({
                     position: markerPosition,
                     animation: google.maps.Animation.DROP
@@ -64,6 +71,6 @@ function initialize_my_map() {
             });
         }
         (marker, i);
-        var markerCluster = new MarkerClusterer(map, markers, { zoomOnClick: true, maxZoom: 16, gridSize: 10 })
-   // })
+        // var markerCluster = new MarkerClusterer(map, markers, { zoomOnClick: true, maxZoom: 16, gridSize: 10 })
+    })
 }
