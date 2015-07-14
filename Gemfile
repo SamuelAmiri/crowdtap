@@ -52,6 +52,8 @@ gem 'rspec'
 
 gem 'geocoder'
 
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development, :test do
   # Call 'binding 'pry' ' anywhere in the code to stop execution and get a debugger console. Be
   # Sure to include 'require pry' .
