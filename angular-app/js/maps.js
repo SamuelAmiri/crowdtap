@@ -31,9 +31,9 @@ function initialize_my_map(index,loc) {
     // Ajax the data URL (this retrieves the contents of that JSON url above)
     $.get(url, function(results){
         
-        for (i=0;i<results.length;i++){
-            console.log(results[i].lat, results[i].long)
-        }
+        // for (i=0;i<results.length;i++){
+        //     console.log(results[i].lat, results[i].long)
+        // }
 
 
         // Wrap the data in an array if it's not one already
@@ -45,10 +45,31 @@ function initialize_my_map(index,loc) {
         
         var bounds = new google.maps.LatLngBounds()
     }else{
-        codeAddress("90401")
-        var bounds = new google.maps.LatLngBounds()
+        if(navigator.geolocation) {
+            browserSupportFlag = true;
+            navigator.geolocation.getCurrentPosition(alert('yes'),alert('no'))
+            //     function(position) {
+            //     alert('hi')
+            //   initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+            //   console.log(initialLocation)
+            //   map.setCenter(initialLocation);
+            // }, function() {
+            //         handleNoGeolocation(browserSupportFlag);
+            // });  
+            // var bounds = new google.maps.LatLngBounds()
+            // }
+          // Browser doesn't support Geolocation
     }
-
+    function handleNoGeolocation(errorFlag) {
+        if (errorFlag == true) {
+          alert("Geolocation service failed.");
+          initialLocation = newyork;
+        } else {
+          alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
+          initialLocation = siberia;
+        }
+        map.setCenter(initialLocation);
+      }
     function codeAddress(location) {
             geocoder = new google.maps.Geocoder();
             var address = location;

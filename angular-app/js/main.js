@@ -6,7 +6,7 @@ angular
       var self = this;
       $.get("http://localhost:3000/api/beers", function(results){
         getBeers = results
-        console.log(getBeers)
+        // console.log(getBeers)
       })
       self.search_term = false;
       
