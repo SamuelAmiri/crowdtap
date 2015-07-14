@@ -10,9 +10,6 @@
   </div>
 </div>
 
-<%= @restaurant.inspect %>
-<%= @hash  %>
-
 <h2> <%= @restaurant.name %></h2>
 <% @restaurant.inspect %>
 <%= form_tag({:controller=>"restaurants", :action=>"show"}, method: :get) do %>

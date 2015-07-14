@@ -17,11 +17,11 @@
       <% @beer.each do |b| %>
           <tr>
             <td>
-            <%= link_to b.name, beers_path(b), method: "get" %>
+            <%= link_to b.name, beer_path(b), method: "get" %>
             </td>   
               <td>
                 <% b.restaurants.each do |r| %>
-                  <%= link_to r.name, restaurants_path(r), method: "get" %>
+                  <%= link_to r.name, restaurant_path(r), method: "get" %>
               </td>
               <td>
                 <%= r.address %>
