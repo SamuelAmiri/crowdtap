@@ -19,7 +19,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li>
-      <%= form_tag({:controller=>"statics", :action=>"index"}, method: :get, class: " navbar-form") do %>
+      <%= form_tag("/search", method: :get, class: "navbar-form") do %>
         <%= text_field_tag :search_term, params[:search_term], placeholder: 'Beer Name',:class => 'tfield'  %>
         <%= text_field_tag :location, params[:location], placeholder: 'Location',:class => 'tfield'  %>
         <%= number_field_tag :range, params[:range], placeholder: 'Distance in Miles', :class => 'tfield' %>

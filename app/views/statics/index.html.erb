@@ -7,13 +7,5 @@
 <%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
 
 
-  <% if @beer.present?  %>
-    <% @beer.each do |f| %>
-      <%= f.name %>   
-    <% end %>
-  <% else %>
-    <p>There are no beers containing the term(s) <%= params[:search_term] %>.</p>
-  <% end %>
-
 
 
