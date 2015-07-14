@@ -16,15 +16,42 @@ class RestaurantsController < ApplicationController
       query =  searchTerm + " near #{locationTerm}"
       @place = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
     end
+
+    @restaurant = []
+
+    if @place.present?
+      @place.each do |p|
+        @restaurant << p
+      end
+    end
+
+    @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
+      marker.lat restaurant.lat
+      marker.lng restaurant.lng
+      marker.infowindow restaurant.name
+      marker.json({ title: restaurant.name })
+    end
+
   end
 
+  #GET "/restaurant/:id"
   def show
   	@restaurant = Restaurant.find(params[:id])
-  	if params[:search_term].present?
+  	
+    if params[:search_term].present?
 			@beer = Beer.search(params[:search_term])
+    end
+
+    #sets up hash for map marker
+    @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
+      marker.lat restaurant.lat
+      marker.lng restaurant.long
+      marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{restaurant.address}"+"'>Get Directions With Google Maps</a>"
+      marker.json({ title: restaurant.name })
+    end
+
 	end
 
-  end
 
   def new
   	

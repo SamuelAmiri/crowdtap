@@ -61,11 +61,7 @@ BODY {
 h2 {    font-size: 50px;
     width: 700px;
 }
-#bio {
-    border: 2px solid lightgrey;
-    width: 600px;
-    border-radius: 5px;
-}
+
 .profileskills {
     width: 900px;
     margin-left: -250px;
@@ -93,3 +89,17 @@ a.skillsbtn {
     font-size: 50px; 
 }
 
+
+.tfield{
+    width: 135px;
+    height: 35px;
+}
+#bio {
+    border: 2px solid lightgrey;
+    width: 600px;
+    border-radius: 5px;
+}
+
+#geolocation { 
+    height: 40vw;
+}
