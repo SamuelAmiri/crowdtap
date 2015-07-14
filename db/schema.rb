@@ -30,8 +30,9 @@ ActiveRecord::Schema.define(version: 20150714001427) do
     t.string   "name"
     t.string   "brewery"
     t.string   "style"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "breweryDB_id"
   end
 
   create_table "restaurants", force: :cascade do |t|

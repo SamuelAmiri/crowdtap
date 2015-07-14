@@ -7,15 +7,36 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js"></script>
         <script src="js/angular.js"></script>
+        <script src="http://maps.googleapis.com/maps/api/js"> </script>
+        <script type="text/javascript" src="js/oms.min.js"></script>
+        <script type="text/javascript" src="js/markerclusterer.js"></script>
         <script src="js/app.js" defer></script>
         <script type="text/javascript" src="js/main.js" defer></script>
         <script type="text/javascript" src="js/maps.js" defer></script>
         <script src="js/oauth-signature.js"></script>
         <script src="js/angular-dragdrop.js"></script>
-        <script src="http://maps.googleapis.com/maps/api/js"> </script>
+        
 	</head>
 	<body ng-controller="BeerController as BeerCtrl">
 
 	<div id="googleMap" style="width:500px;height:380px;"></div>
+	<div id="beerSearchArea">
+		<div id="beerSearchBox" ng-hide="BeerCtrl.search_term">
+			<form name="myForm">
+			  <label>
+			    <input type="text" name="input" placeholder="Beer" ng-model="BeerCtrl.beerparam">
+			    <input type="text" name="input" placeholder="Location" ng-model="BeerCtrl.locparam">
+			    <button ng-click="BeerCtrl.queryBrewDB()">Search!</button>
+			  </label>
+			</form>			
+		</div>
+		<div class="beerChoices" ng-show="BeerCtrl.search_term">
+			<h3>Did you mean:</h3>
+			<div class="beerChoice" ng-repeat="beer in BeerCtrl.beers">
+
+				<img class="beerLogo" ng-src={{beer.labels.medium}} ng-click="BeerCtrl.selectBeer($index)">
+			</div>
+		</div>
+	</div>
 	</body>
 </html>
