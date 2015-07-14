@@ -6,7 +6,8 @@ class RestaurantsController < ApplicationController
     if params[:search_term].present?
       @client = GooglePlaces::Client.new(ENV["googleplaces_api_key"])
       searchTerm = params[:search_term]
-      query =  searchTerm + " near Santa Monica"
+      locationTerm = params[:location]
+      query =  searchTerm + " near #{locationTerm}"
       @place = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
     end
   end
@@ -35,7 +36,7 @@ class RestaurantsController < ApplicationController
   private
   	def restaurant_params
   		
-  		params.require(:restaurant).permit(:name, :lat, :long, :place_id, beer_ids:[])
+  		params.require(:restaurant).permit(:name, :lat, :long, :place_id, :address, :rating, :price, beer_ids:[])
 
   	end
 
