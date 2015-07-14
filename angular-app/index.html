@@ -30,11 +30,11 @@
 			  </label>
 			</form>			
 		</div>
-		<div id="beerChoices" ng-show="BeerCtrl.search_term">
-		{{BeerCtrl.beers}}
-			<div id="beerChoice" ng-repeat="beer in BeerCtrl.beers">
-				<h1>Hi.</h1>
-				<!-- <img id="beerLogo" ng-src="beer['labels']['medium']"> -->
+		<div class="beerChoices" ng-show="BeerCtrl.search_term">
+		
+			<div class="beerChoice" ng-repeat="beer in BeerCtrl.beers">
+
+				<img class="beerLogo" ng-src={{beer.labels.medium}} ng-click="BeerCtrl.selectBeer($index)">
 			</div>
 		</div>
 	</div>
