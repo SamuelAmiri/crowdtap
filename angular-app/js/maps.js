@@ -1,13 +1,12 @@
     
 // The init function to load google map on page load
-google.maps.event.addDomListener(window, 'load', initialize_my_map)
-google.maps.event.addDomListener(window, 'page:load', initialize_my_map)
+google.maps.event.addDomListener(window, 'load', initialize_my_map())
+google.maps.event.addDomListener(window, 'page:load', initialize_my_map())
 // Define a function that should be ran on load (yay function hoisting)
 
-function initialize_my_map() {
+function initialize_my_map(index,location) {
     $.get("http://localhost:3000/api/beers", function(results){
         var beers = results
-        console.log(beers)
     })
     // Find the map DIV (if it exists)
     var el = document.getElementById('googleMap')
@@ -18,7 +17,14 @@ function initialize_my_map() {
     // var result = $.grep(myArray, function(e){ return e.id == id; });
     // Get the page's marker data from the JSON API
     //var url = window.location.origin + window.location.pathname + ".json" + window.location.search 
-    var url = "http://localhost:3000/api/beers/1"
+    
+    if(index) {
+        var ind = index.toString();
+        var url = "http://localhost:3000/api/beers/"+ ind 
+    } else {
+        var url = "http://localhost:3000/api/restaurants/"
+    }
+    
     // console.log(url)
     // console.log (window.location.origin)
     // console.log (window.location.pathname)
@@ -32,7 +38,7 @@ function initialize_my_map() {
 
         // Wrap the data in an array if it's not one already
         if(!(results instanceof Array)) results = [results] 
-
+        
         // Create a map
         var mapProps = {
             zoom: 16,
@@ -58,12 +64,12 @@ function initialize_my_map() {
                     animation: google.maps.Animation.DROP
                 
                     })
-            marker.content = '<h5>' + results[i].title + '</h5><hr><h3>$' + results[i].price + '</h3><h6>' + results[i].address + '</h6>' +
-            '<h6>' + results[i].city + ',' + results[i].state + ' ' + results[i].zipcode + '</h6>';  
+            marker.content = '<h5>' + results[i].name + '</h5><hr><h3>$' + results[i].price + '</h3><h6>' + results[i].rating + '</h6>' +
+            // '<h6>' + results[i].city + ',' + results[i].state + ' ' + results[i].zipcode + '</h6>';  
             marker.setMap(map)
             bounds.extend(markerPosition);
             map.fitBounds(bounds);
-               markers.push(marker)
+            markers.push(marker);
             oms.addMarker(marker);
             oms.addListener('click', function(marker, event) {
                 infowindow.setContent(marker.content);
@@ -71,6 +77,6 @@ function initialize_my_map() {
             });
         }
         (marker, i);
-        // var markerCluster = new MarkerClusterer(map, markers, { zoomOnClick: true, maxZoom: 16, gridSize: 10 })
+        var markerCluster = new MarkerClusterer(map, markers, { zoomOnClick: true, maxZoom: 16, gridSize: 10 })
     })
 }

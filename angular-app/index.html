@@ -24,14 +24,14 @@
 		<div id="beerSearchBox" ng-hide="BeerCtrl.search_term">
 			<form name="myForm">
 			  <label>
-			    <input type="text" name="input" place-holder="Beer" ng-model="BeerCtrl.beerparam">
-			    <input type="text" name="input" place-holder="Location" ng-model="BeerCtrl.locparam">
+			    <input type="text" name="input" placeholder="Beer" ng-model="BeerCtrl.beerparam">
+			    <input type="text" name="input" placeholder="Location" ng-model="BeerCtrl.locparam">
 			    <button ng-click="BeerCtrl.queryBrewDB()">Search!</button>
 			  </label>
 			</form>			
 		</div>
 		<div class="beerChoices" ng-show="BeerCtrl.search_term">
-		
+			<h3>Did you mean:</h3>
 			<div class="beerChoice" ng-repeat="beer in BeerCtrl.beers">
 
 				<img class="beerLogo" ng-src={{beer.labels.medium}} ng-click="BeerCtrl.selectBeer($index)">

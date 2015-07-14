@@ -4,8 +4,11 @@ angular
 
 	function BeerController($http,$scope) {
       var self = this;
+      $.get("http://localhost:3000/api/beers", function(results){
+        getBeers = results
+        console.log(getBeers)
+      })
       self.search_term = false;
-      self.beers = [0,1,2,3]
       
       self.queryBrewDB = function(){
       	self.search_term = true;
@@ -19,6 +22,10 @@ angular
       self.selectBeer = function(index){
       	self.beerID = self.beers[index].id
       	self.search_term = false;
+      	var elementPos = getBeers.map(function(x) {return x.breweryDB_id; }).indexOf(self.beerID) + 1
+      	console.log(elementPos)
+      	initialize_my_map(elementPos)
+
       }
     }
  
