@@ -4,7 +4,7 @@ google.maps.event.addDomListener(window, 'load', initialize_my_map())
 google.maps.event.addDomListener(window, 'page:load', initialize_my_map())
 // Define a function that should be ran on load (yay function hoisting)
 
-function initialize_my_map(index,location) {
+function initialize_my_map(index,loc) {
     $.get("http://localhost:3000/api/beers", function(results){
         var beers = results
     })
@@ -38,18 +38,42 @@ function initialize_my_map(index,location) {
 
         // Wrap the data in an array if it's not one already
         if(!(results instanceof Array)) results = [results] 
+     
+///
+    if(loc){
+        codeAddress(loc);
         
+        var bounds = new google.maps.LatLngBounds()
+    }else{
+        codeAddress("90401")
+        var bounds = new google.maps.LatLngBounds()
+    }
+
+    function codeAddress(location) {
+            geocoder = new google.maps.Geocoder();
+            var address = location;
+            geocoder.geocode( { 'address': address}, function(results, status) {
+              if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                map.setZoom(13)
+              } else {
+                alert("Geocode was not successful for the following reason: " + status);
+              }
+            });
+        }
+///
         // Create a map
         var mapProps = {
             zoom: 16,
             maxZoom: 18,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         }
+
+
         var map = new google.maps.Map(el, mapProps)
 
         var oms = new OverlappingMarkerSpiderfier(map);
         // Bounds are cool because they center our map for us
-        var bounds = new google.maps.LatLngBounds()
         var infowindow = new google.maps.InfoWindow({
         });
         
@@ -67,7 +91,6 @@ function initialize_my_map(index,location) {
             marker.content = '<h5>' + results[i].name + '</h5><hr><h3>$' + results[i].price + '</h3><h6>' + results[i].rating + '</h6>' +
             // '<h6>' + results[i].city + ',' + results[i].state + ' ' + results[i].zipcode + '</h6>';  
             marker.setMap(map)
-            bounds.extend(markerPosition);
             map.fitBounds(bounds);
             markers.push(marker);
             oms.addMarker(marker);

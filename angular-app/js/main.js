@@ -24,7 +24,7 @@ angular
       	self.search_term = false;
       	var elementPos = getBeers.map(function(x) {return x.breweryDB_id; }).indexOf(self.beerID) + 1
       	console.log(elementPos)
-      	initialize_my_map(elementPos)
+      	initialize_my_map(elementPos,self.locparam)
 
       }
     }
