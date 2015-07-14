@@ -1,7 +1,7 @@
-<div style='width: 800px;'>
-  <div id="geolocation" style='width: 900px; height: 450px;'></div>
+<div style='width: 100%;'>
+  <div id="geolocation" style='width: 1200px; height: 600px;'></div>
+  <%= render "/layouts/home_map"  %>
 </div>
-
 
 <%= form_tag({:controller=>"statics", :action=>"index"}, method: :get) do %>
 	<%= text_field_tag :search_term, params[:search_term], placeholder: 'Enter Beer Name...' %>
@@ -12,56 +12,14 @@
 
 <%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
 
-<% if @beer.present? %>
-  <% @beer.each do |f| %>
-    <%= f.name %>   
+
+  <% if @beer.present?  %>
+    <% @beer.each do |f| %>
+      <%= f.name %>   
+    <% end %>
+  <% else %>
+    <p>There are no beers containing the term(s) <%= params[:search_term] %>.</p>
   <% end %>
-<% else %>
-  <p>There are no beers containing the term(s) <%= params[:search_term] %>.</p>
-<% end %>
-
-<br>
-<br>
-<% @beer.each do |b|  %>
-  <% b.restaurants.each do |r|  %>
-    <%= r.inspect %>
-  <% end %>
-<% end %>
-
-<%#= @restaurants.inspect %>
-<br>
-<br>
-<%#= @restaurants1.inspect %>
-<br>
-<br>
-<%#= @restaurants1%>
-<br>
-<br>
-<%#= @restaurants1[0][0].lat %>
-<br>
-<br>
-<%#= @hash  %>
-  
 
 
-
-<script type="text/javascript">
-var handler = Gmaps.build('Google');
-handler.buildMap({ provider: {}, internal: {id:'geolocation'}}, function(){
-  if(navigator.geolocation)
-    navigator.geolocation.getCurrentPosition(displayOnMap);
-
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-
-function displayOnMap(position){
-  var marker = handler.addMarker({
-    lat: position.coords.latitude,
-    lng: position.coords.longitude
-  });
-};
-
-</script>
 
