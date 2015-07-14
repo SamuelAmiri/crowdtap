@@ -28,6 +28,7 @@
 		          <%= hidden_field_tag "beer[name]", f['name'] %>
 		          <%= hidden_field_tag "beer[brewery]", f['breweries'][0]["name"] %>
 		    	  <%= hidden_field_tag "beer[style]", f["style"]["shortName"] %>
+		    	  <%= hidden_field_tag "beer[breweryDB_id]", f["id"] %>
 		      	  <%= submit_tag 'Add Beer', name: nil %>
       		  <% end %>
 		<% end %>

@@ -7,7 +7,13 @@ class StaticsController < ApplicationController
 		@restaurants = []
 		@search_term = params[:search_term]
 		@location = params[:location]
-		@range = params[:range]
+
+		if params[:range].present?
+			@range = params[:range]
+		else
+			@range = "5"
+		end
+
 		@beer = Beer.beer_search(params[:search_term])
 
 		@beer.each do |b|
@@ -22,9 +28,6 @@ class StaticsController < ApplicationController
 		elsif @location.empty?
 			flash[:notice] = "You can't search without a location; please enter a location and retry!"
 			redirect_to "/"
-		elsif @range.empty?
-			flash[:notice] = "You can't search without a distance; please enter a distance and retry!"
-			redirect_to "/"	
 		else
 			if @restaurants.length < 1
 				flash[:notice] = "Sorry! We couldn't find any beer named '#{@search_term}' within #{@range} miles of #{@location}."
