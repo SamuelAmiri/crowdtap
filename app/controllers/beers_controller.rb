@@ -9,6 +9,7 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.json
   def show
+    @results = Yelp.client.search('San Francisco', { term: 'food' })
   end
 
   # GET /beers/new

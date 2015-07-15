@@ -30,12 +30,6 @@ function initialize_my_map(index,loc) {
     // console.log (window.location.pathname)
     // Ajax the data URL (this retrieves the contents of that JSON url above)
     $.get(url, function(results){
-        
-        // for (i=0;i<results.length;i++){
-        //     console.log(results[i].lat, results[i].long)
-        // }
-
-
         // Wrap the data in an array if it's not one already
         if(!(results instanceof Array)) results = [results] 
      
@@ -47,18 +41,20 @@ function initialize_my_map(index,loc) {
     }else{
         if(navigator.geolocation) {
             browserSupportFlag = true;
-            navigator.geolocation.getCurrentPosition(alert('yes'),alert('no'))
-            //     function(position) {
-            //     alert('hi')
-            //   initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-            //   console.log(initialLocation)
-            //   map.setCenter(initialLocation);
-            // }, function() {
-            //         handleNoGeolocation(browserSupportFlag);
-            // });  
-            // var bounds = new google.maps.LatLngBounds()
-            // }
-          // Browser doesn't support Geolocation
+            navigator.geolocation.getCurrentPosition(
+                function(position) {
+                
+                  initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+                  console.log(initialLocation)
+                  map.setCenter(initialLocation);
+                  map.setZoom(15)
+                }, function() {
+                        handleNoGeolocation(browserSupportFlag);
+                     }
+                );  
+            var bounds = new google.maps.LatLngBounds()
+            }
+          //Browser doesn't support Geolocation
     }
     function handleNoGeolocation(errorFlag) {
         if (errorFlag == true) {
@@ -76,7 +72,7 @@ function initialize_my_map(index,loc) {
             geocoder.geocode( { 'address': address}, function(results, status) {
               if (status == google.maps.GeocoderStatus.OK) {
                 map.setCenter(results[0].geometry.location);
-                map.setZoom(13)
+                map.setZoom(14)
               } else {
                 alert("Geocode was not successful for the following reason: " + status);
               }

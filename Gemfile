@@ -54,6 +54,8 @@ gem 'geocoder'
 
 gem 'rack-cors', :require => 'rack/cors'
 
+gem 'yelp', require: 'yelp'
+
 group :development, :test do
   # Call 'binding 'pry' ' anywhere in the code to stop execution and get a debugger console. Be
   # Sure to include 'require pry' .
