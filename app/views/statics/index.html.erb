@@ -3,9 +3,20 @@
   <%= render "/layouts/home_map"  %>
 </div>
 
-
-<%= button_to "Add Beer", restaurants_path, :class => "button", :method => :get  %>
-
+<center><h3>--Recently Added Beers--</h3></center>
+<% @news_feed.each do |f| %>
+    <div class="col-md-4 col-sm-6">
+      <div class="news_box">
+        <div class="button_div first_button">
+          <h4>
+            <center><%= @beer.find(f.beer_id).name%> <br><br>has been added to <br><br><%= @restaurant.find(f.restaurant_id).name%><br><br><%= @restaurant.find(f.restaurant_id).address%>
+            </center>
+          </h4>
+              
+        </div>
+      </div>
+    </div>
+  <% end %>
 
 
 
