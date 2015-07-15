@@ -11,25 +11,31 @@
   </div>
 </div>
 
+
+<%= @spot %>
+  <!-- Search form for Restaurants/Bars -->
   <%= form_tag({:controller=>"restaurants", :action=>"index"}, method: :get) do %>
-      <%= text_field_tag :search_term %>
-      <%= text_field_tag :location %>
+      <%= text_field_tag :search_term_bar %>
+      <%= text_field_tag :location_bar %>
       <%= submit_tag 'Search for a Bar', name: nil %>
   <% end %>
 
+  <%= @photo  %>
 
+  <!-- Display all results from search -->
   <% if @place.present? %>
     <%= @place.each do |x| %>
       <%= x.name %> <br/>
       <%= x.vicinity %> <br/>
       <%= x.lat %> <br/>
       <%= x.lng %> <br/>
-      <%= x.icon %> <br/>
+      <%= image_tag(x.icon) %> <br/>
       <%= x.types %> <br/>
       <%= x.place_id %> <br/>
       <%= x.formatted_address %> <br/>
       <%= x.rating %><br/>
       <%= x.price_level %><br/>
+      <%#= x.photos[0].fetch_url(800) %>
 
       <%= form_tag({:controller=>"restaurants", :action=>"create"}, method: :post) do %>
           <%= hidden_field_tag "restaurant[name]", x.name %>

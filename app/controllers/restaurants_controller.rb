@@ -3,18 +3,24 @@ class RestaurantsController < ApplicationController
 
   def index
 
-    if params[:search_term].present?
+    if params[:search_term_bar].present?
       @client = GooglePlaces::Client.new(ENV["googleplaces_api_key"])
-      searchTerm = params[:search_term]
+      searchTerm = params[:search_term_bar]
       
-      if params[:location].present?
-        locationTerm = params[:location]
+      if params[:location_bar].present?
+        locationTerm = params[:location_bar]
       else 
         locationTerm = request.location.city
       end
 
       query =  searchTerm + " near #{locationTerm}"
       @place = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
+      
+      @photo = []
+
+      @place.each do |p|
+        @photo << p.photos[0].fetch_url(800)
+      end
     end
 
     @restaurant = []
