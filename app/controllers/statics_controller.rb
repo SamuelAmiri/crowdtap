@@ -42,6 +42,11 @@ class StaticsController < ApplicationController
 
 	end
 
+	def about
+	end
+	
+
+
 	private
 
 	# sets up the map hash for gmaps4rails

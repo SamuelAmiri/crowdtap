@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+  get "/statics/about" => "statics#about"
+  get "/statics/contact" => "statics#contact"
   resources :restaurants
   resources :statics
+
 
   namespace :api do
     resources :beers, only: [:index, :show]
