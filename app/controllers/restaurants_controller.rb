@@ -15,7 +15,6 @@ class RestaurantsController < ApplicationController
 
       query =  searchTerm + " near #{locationTerm}"
       @place = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
-      @spot = @place[0].photos[0].fetch_url(800)
     end
 
     @restaurants = []
