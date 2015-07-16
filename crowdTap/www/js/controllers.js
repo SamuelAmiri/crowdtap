@@ -68,7 +68,7 @@ angular.module('starter.controllers', [])
         initialize_my_map(elementPos,$scope.locparam)
 
       }
-    angular.element().ready(function(){initialize_my_map(1,'mexico city')})
+    angular.element().ready(function(){initialize_my_map()})
     
 
 });

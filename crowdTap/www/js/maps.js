@@ -3,7 +3,7 @@
 // google.maps.event.addDomListener(window, 'page:load', initialize_my_map())
 // Define a function that should be ran on load (yay function hoisting)
 
-function initialize_my_map(index,loc) {
+function initialize_my_map(markers,loc) {
     // Find the map DIV (if it exists)
     var el = document.getElementById('googleMap')
 
@@ -12,12 +12,12 @@ function initialize_my_map(index,loc) {
 
     
     
-    if(index) {
-        var ind = index.toString();
-        var url = "http://localhost:3000/api/beers/"+ ind 
-    } else {
-        var url = "http://localhost:3000/api/restaurants/"
-    }
+    // if(index) {
+    //     var ind = index.toString();
+    //     var url = "http://localhost:3000/api/beers/"+ ind 
+    // } else {
+    //     var url = "http://localhost:3000/api/restaurants/"
+    // }
     
 //     // console.log(url)
 //     // console.log (window.location.origin)
