@@ -12,6 +12,7 @@ function displayOnMap(position){
     lat: position.coords.latitude,
     lng: position.coords.longitude
   });
+  handler.map.centerOn(marker);
   handler.getMap().setZoom(12);
 };
 </script>

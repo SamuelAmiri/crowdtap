@@ -7,8 +7,14 @@ handler.buildMap({
         	navigator.geolocation.getCurrentPosition(displayOnMap);
 
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
+  
+  if(markers) {
+	handler.bounds.extendWith(markers);
+  	handler.fitMapToBounds();
+  }
+  else {
+	handler.map.centerOn(marker);
+  }
 });
 
 function displayOnMap(position){
@@ -16,6 +22,6 @@ function displayOnMap(position){
     lat: position.coords.latitude,
     lng: position.coords.longitude
   });
-  handler.map.centerOn(marker);	
+
 };
 </script>

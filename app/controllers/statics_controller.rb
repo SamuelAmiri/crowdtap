@@ -1,6 +1,9 @@
 class StaticsController < ApplicationController
 
 	def index
+		@news_feed = Beerrestaurant.last(6).reverse
+		@beer = Beer.all
+		@restaurant = Restaurant.all
 	end
 
 	def search

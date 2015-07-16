@@ -15,23 +15,18 @@ class RestaurantsController < ApplicationController
 
       query =  searchTerm + " near #{locationTerm}"
       @place = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
-      
-      @photo = []
-
-      @place.each do |p|
-        @photo << p.photos[0].fetch_url(800)
-      end
+      @spot = @place[0].photos[0].fetch_url(800)
     end
 
-    @restaurant = []
+    @restaurants = []
 
     if @place.present?
       @place.each do |p|
-        @restaurant << p
+        @restaurants << p
       end
     end
 
-    @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
+    @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.lat
       marker.lng restaurant.lng
       marker.infowindow restaurant.name

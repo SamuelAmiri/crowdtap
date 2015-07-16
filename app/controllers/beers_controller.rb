@@ -9,6 +9,20 @@ class BeersController < ApplicationController
   # GET /beers/1
   # GET /beers/1.json
   def show
+    @beer = Beer.find(params[:id])
+    
+    @restaurants = []
+
+    @beer.restaurants.each do |r|
+      @restaurants << r
+    end
+
+    @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
+      marker.lat restaurant.lat
+      marker.lng restaurant.long
+      marker.infowindow "<a href='/restaurants/"+"#{restaurant.id}"+"'>#{restaurant.name}</a>"
+      marker.json({ title: restaurant.name })
+    end
   end
 
   # GET /beers/new
@@ -65,6 +79,6 @@ class BeersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params
-      params.require(:beer).permit(:name, :brewery, :style, :breweryDB_id, restaurant_ids:[])
+      params.require(:beer).permit(:name, :brewery, :style, :breweryDB_id, :labels, :description, restaurant_ids:[])
     end
 end

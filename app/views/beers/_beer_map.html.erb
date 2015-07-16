@@ -1,0 +1,27 @@
+<script type="text/javascript">
+handler = Gmaps.build('Google');
+handler.buildMap({ 
+	provider: { }, 
+	internal: {id: 'beer_map'}}, function(){
+		if(navigator.geolocation)
+        	navigator.geolocation.getCurrentPosition(displayOnMap);
+
+  markers = handler.addMarkers(<%=raw @hash.to_json %>);
+  
+  if(markers) {
+	handler.bounds.extendWith(markers);
+  	handler.fitMapToBounds();
+  }
+  else {
+	handler.map.centerOn(marker);
+  }
+});
+
+function displayOnMap(position){
+  var marker = handler.addMarker({
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  });
+
+};
+</script>

@@ -6,32 +6,28 @@
 <body>
 
 <div style="width:100%;">
-  <div id="map" style="width: 100%; height: 300px;">
+  <div id="map" style="width: 100%; height: 500px;">
     <%= render "restaurant_map" %>
   </div>
 </div>
 
-
-<%= @spot %>
   <!-- Search form for Restaurants/Bars -->
-  <%= form_tag({:controller=>"restaurants", :action=>"index"}, method: :get) do %>
-      <%= text_field_tag :search_term_bar %>
-      <%= text_field_tag :location_bar %>
-      <%= submit_tag 'Search for a Bar', name: nil %>
-  <% end %>
 
-  <%= @photo  %>
+    <form class="navbar-form navbar-center", role="search">
+      <%= form_tag({:controller=>"restaurants", :action=>"index"}, method: :get) do %>
+      <div class="form-group-lg">
+              <%= text_field_tag :search_term_bar, '', :placeholder => "Restaurant/Bar", :class => "form-control" %>
+              <%= text_field_tag :location_bar, '', :placeholder => "Location", :class => "form-control" %>
+              <%= submit_tag 'Search', name: nil, :class => "btn btn-lg" %>
+          <% end %>
+      </div>
+    </form>
 
   <!-- Display all results from search -->
-  <% if @place.present? %>
-    <%= @place.each do |x| %>
+  <% if @restaurants.present? %>
+    <% @restaurants.each do |x| %>
       <%= x.name %> <br/>
-      <%= x.vicinity %> <br/>
-      <%= x.lat %> <br/>
-      <%= x.lng %> <br/>
       <%= image_tag(x.icon) %> <br/>
-      <%= x.types %> <br/>
-      <%= x.place_id %> <br/>
       <%= x.formatted_address %> <br/>
       <%= x.rating %><br/>
       <%= x.price_level %><br/>
