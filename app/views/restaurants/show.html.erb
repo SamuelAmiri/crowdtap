@@ -5,7 +5,7 @@
 </head>
 <body>
 <div style="width:100%;">
-  <div id="map" style="width: 100%; height: 300px;">
+  <div id="map" style="width: 100%; height: 500px;">
     <%= render "restaurant_map" %>
   </div>
 </div>
@@ -20,11 +20,21 @@
 <% if @beer.present?%>
 	<% if @beer['data'].present? %>
 		<% @beer['data'].each do |f|  %>
+		<%#= f["style"] %>
+		<%#= f["description"] %>
 			<%= image_tag((f['labels']['medium'] if f['labels'].present?), class: "label_icon") %>
 			  <%= form_tag({:controller=>"beers", :action=>"create", :id => @restaurant.id}, method: :post) do %>
 		          <%= hidden_field_tag "beer[name]", f['name'] %>
 		          <%= hidden_field_tag "beer[brewery]", f['breweries'][0]["name"] %>
+		          <% if f["style"].present? %>
 		    	  <%= hidden_field_tag "beer[style]", f["style"]["shortName"] %>
+		    	  <% end %>
+		    	  <% if f["labels"].present? %>
+		    	  <%= hidden_field_tag "beer[labels]", f["labels"]["medium"]  %>
+		    	  <% end %>
+  		    	  <% if f["description"].present? %>
+		    	  <%= hidden_field_tag "beer[description]", f["description"] %>
+		    	  <% end %>
 		    	  <%= hidden_field_tag "beer[breweryDB_id]", f["id"] %>
 		      	  <%= submit_tag 'Add Beer', name: nil %>
       		  <% end %>
@@ -33,7 +43,8 @@
 <% end %>
 <h4>What's on Tap?</h4>
 <% @restaurant.beers.each do |f| %>
-	<%= f.name %>
+
+	<%= link_to "#{f.name}", beer_path(f.id) %>
 	<br />	
 <% end %>
 

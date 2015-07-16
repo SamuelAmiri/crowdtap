@@ -5,10 +5,6 @@ handler.buildMap({
     internal: {id:'geolocation'}}, function(){
       if(navigator.geolocation)
         navigator.geolocation.getCurrentPosition(displayOnMap);
-  markers = handler.addMarkers(<%=raw @hash.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-  handler.getMap().setZoom(15);
 });
 
 function displayOnMap(position){
@@ -17,6 +13,6 @@ function displayOnMap(position){
     lng: position.coords.longitude
   });
   handler.map.centerOn(marker);
+  handler.getMap().setZoom(12);
 };
-
 </script>

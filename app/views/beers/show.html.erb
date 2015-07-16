@@ -1,26 +1,43 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @beer.name %>
-</p>
+<div class="container-fluid" id="main">
+  <div class="row">
+  	<div class="col-xs-8" id="left">
 
-<p>
-  <strong>Brewery:</strong>
-  <%= @beer.brewery %>
-</p>
+  	<h2><%=@beer.name%></h2>
+	
+	<%= image_tag(@beer.labels)%>
 
-<p>
-  <strong>Style:</strong>
-  <%= @beer.style %>
-</p>
+	<p>
+	  <strong>Brewery:</strong>
+	  <%= @beer.brewery %>
+	</p>
 
-<p>
-  <strong>Restaurant ids:</strong>
-  <%= @beer.restaurant_ids %>
-</p>
+	<p>
+	  <strong>Style:</strong>
+	  <%= @beer.style %>
+	</p>
 
-<%= @results.businesses[1].inspect  %>
+	<p>
+	  <strong>Description:</strong>
+	  <%= @beer.description %>
+	</p>
 
-<%= link_to 'Edit', edit_beer_path(@beer) %> |
-<%= link_to 'Back', beers_path %>
+	<p>
+	  <strong>You can find it at:</strong>
+	  <% @restaurants.each do |r| %>
+	  	<%= link_to r.name, restaurant_path(r), method: "get" %>
+	  	<%= r.address %>
+	  <% end %>
+	</p>
+
+	</div>
+  </div>
+</div>
+
+
+
+<div id="beer_map">
+	<%= render "beer_map" %>
+</div>
+

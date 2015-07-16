@@ -2,7 +2,7 @@
 handler = Gmaps.build('Google');
 handler.buildMap({ 
 	provider: { }, 
-	internal: {id: 'map'}}, function(){
+	internal: {id: 'beer_map'}}, function(){
 		if(navigator.geolocation)
         	navigator.geolocation.getCurrentPosition(displayOnMap);
 

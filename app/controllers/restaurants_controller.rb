@@ -3,29 +3,30 @@ class RestaurantsController < ApplicationController
 
   def index
 
-    if params[:search_term].present?
+    if params[:search_term_bar].present?
       @client = GooglePlaces::Client.new(ENV["googleplaces_api_key"])
-      searchTerm = params[:search_term]
+      searchTerm = params[:search_term_bar]
       
-      if params[:location].present?
-        locationTerm = params[:location]
+      if params[:location_bar].present?
+        locationTerm = params[:location_bar]
       else 
         locationTerm = request.location.city
       end
 
       query =  searchTerm + " near #{locationTerm}"
       @place = @client.spots_by_query( query, :types => ['restaurant', 'bar'])
+      @spot = @place[0].photos[0].fetch_url(800)
     end
 
-    @restaurant = []
+    @restaurants = []
 
     if @place.present?
       @place.each do |p|
-        @restaurant << p
+        @restaurants << p
       end
     end
 
-    @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
+    @hash = Gmaps4rails.build_markers(@restaurants) do |restaurant, marker|
       marker.lat restaurant.lat
       marker.lng restaurant.lng
       marker.infowindow restaurant.name
