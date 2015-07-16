@@ -41,18 +41,35 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
 
-.controller()
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('PlaylistsCtrl', function($http,$scope,$stateParams){
+      $scope.foo = 'bar';
+      $http.get("http://localhost:3000/api/beers", { cache: true }).then(function(results){
+        getBeers = results.data
+      });
+
+      $scope.search_term = false;
+      
+      $scope.queryBrewDB = function(){
+        $scope.search_term = true;
+        url = "http://api.brewerydb.com/v2/search?q="+$scope.beerparam+"&type=beer&key=3fa253bbc1552ae76cdad8987cd4386b"
+        $http.get(url, function(results){
+          $scope.beers = results["data"];
+          console.log($scope.beers)
+          $scope.$apply()
+        })
+      }
+      $scope.selectBeer = function(index){
+        $scope.beerID = $scope.beers[index].id
+        $scope.search_term = false;
+        var elementPos = getBeers.map(function(x) {return x.breweryDB_id; }).indexOf($scope.beerID) + 1
+        console.log(elementPos)
+        initialize_my_map(elementPos,$scope.locparam)
+
+      }
+    angular.element().ready(function(){initialize_my_map()})
+    
+
 });
+
