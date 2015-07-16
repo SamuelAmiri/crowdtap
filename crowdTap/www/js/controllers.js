@@ -44,31 +44,47 @@ angular.module('starter.controllers', [])
 
 
 .controller('PlaylistsCtrl', function($http,$scope,$stateParams){
-      $scope.foo = 'bar';
-      $http.get("http://localhost:3000/api/beers", { cache: true }).then(function(results){
-        getBeers = results.data
-      });
+    $scope.beer = {};
+    $http.get("https://crowdtap.herokuapp.com/api/beers", { cache: true }).then(function(results){
+      $scope.getBeers = results.data
+    });
 
-      $scope.search_term = false;
+    $scope.search_term = false;
       
-      $scope.queryBrewDB = function(){
-        $scope.search_term = true;
-        url = "http://api.brewerydb.com/v2/search?q="+$scope.beerparam+"&type=beer&key=3fa253bbc1552ae76cdad8987cd4386b"
-        $http.get(url, function(results){
-          $scope.beers = results["data"];
-          console.log($scope.beers)
-          $scope.$apply()
+    $scope.queryBrewDB = function(){
+   
+      var url = "http://api.brewerydb.com/v2/search?q="+$scope.beer.beerparam+"&type=beer&key=3fa253bbc1552ae76cdad8987cd4386b"
+      $scope.search_term = true;
+      console.log(url)
+      $http.get(url, { cache: true }).then(function(results){
+        $scope.beers = results.data.data;
+        console.log($scope.beers)
+        // $scope.$apply()
+      })
+    }
+     
+    $scope.selectBeer = function(index){
+      $scope.beerID = $scope.beers[index].id
+      $scope.search_term = false;
+      var elementPos = $scope.getBeers.map(function(x) {return x.breweryDB_id; }).indexOf($scope.beerID) + 1
+      console.log(elementPos)
+      var ind = elementPos.toString();
+      var url = "https://crowdtap.herokuapp.com/api/beers/"+ ind
+      $http.get(url).then(function(results){
+          $scope.results = results.data
+          console.log($scope.results)
+      initialize_my_map($scope.results,$scope.locparam)
+      })
+    }
+    var url = "https://crowdtap.herokuapp.com/api/restaurants/"  
+    angular.element().ready(function(){
+      $http.get(url).success(function(result){
+          markers = result;
+          console.log(markers)
+          initialize_my_map(markers)
         })
-      }
-      $scope.selectBeer = function(index){
-        $scope.beerID = $scope.beers[index].id
-        $scope.search_term = false;
-        var elementPos = getBeers.map(function(x) {return x.breweryDB_id; }).indexOf($scope.beerID) + 1
-        console.log(elementPos)
-        initialize_my_map(elementPos,$scope.locparam)
-
-      }
-    angular.element().ready(function(){initialize_my_map()})
+      
+    })
     
 
 });
