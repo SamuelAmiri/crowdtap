@@ -5,6 +5,9 @@ class CreateRestaurants < ActiveRecord::Migration
       t.float :lat
       t.float :long
       t.[] :beer_ids
+      t.text :location
+      t.text :address
+      t.text :formatted_address
 
       t.timestamps null: false
     end

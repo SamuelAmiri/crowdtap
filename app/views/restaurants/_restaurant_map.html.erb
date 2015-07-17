@@ -1,20 +1,17 @@
 <script type="text/javascript">
 handler = Gmaps.build('Google');
 handler.buildMap({ 
-	provider: { }, 
-	internal: {id: 'map'}}, function(){
-		if(navigator.geolocation)
-        	navigator.geolocation.getCurrentPosition(displayOnMap);
+	provider: { mapTypeId: google.maps.MapTypeId.ROADMAP, maxZoom: 25}, 
+	internal: {id: 'restaurant_map'}}, function(){
 
   markers = handler.addMarkers(<%=raw @hash.to_json %>);
   
   if(markers) {
-	handler.bounds.extendWith(markers);
+    handler.bounds.extendWith(markers);
   	handler.fitMapToBounds();
   }
-  else {
-	handler.map.centerOn(marker);
-  }
+  else (navigator.geolocation)
+          navigator.geolocation.getCurrentPosition(displayOnMap);
 });
 
 function displayOnMap(position){
@@ -22,6 +19,6 @@ function displayOnMap(position){
     lat: position.coords.latitude,
     lng: position.coords.longitude
   });
-
+  handler.map.centerOn(marker);
 };
 </script>

@@ -5,14 +5,14 @@
 </head>
 <body>
 
-<div style="width:100%;">
-  <div id="map" style="width: 100%; height: 500px;">
+  <div id="restaurant_map">
     <%= render "restaurant_map" %>
   </div>
-</div>
 
   <!-- Search form for Restaurants/Bars -->
+<div id="restaurant-index-body">
 
+  <h2> Find and choose the Restaurant to add a Beer </h2>
     <form class="navbar-form navbar-center", role="search">
       <%= form_tag({:controller=>"restaurants", :action=>"index"}, method: :get) do %>
       <div class="form-group-lg">
@@ -25,29 +25,33 @@
 
   <!-- Display all results from search -->
   <% if @restaurants.present? %>
+    <div class="row">
+    <%# raise @restaurants.inspect %>
     <% @restaurants.each do |x| %>
-      <%= x.name %> <br/>
-      <%= image_tag(x.icon) %> <br/>
-      <%= x.formatted_address %> <br/>
-      <%= x.rating %><br/>
-      <%= x.price_level %><br/>
-      <%#= x.photos[0].fetch_url(800) %>
+      unless x.place_id 
+      <div class="col-xs-6 col-md-3">
+        <%= x.name %> <br/>
+        <%= image_tag(x.icon) %> <br/>
+        <%= x.formatted_address %> <br/>
+        <%= x.rating %><br/>
+        <%= x.price_level %><br/>
+        <%= x.lng %>
+        <%= x.lat %>
 
-      <%= form_tag({:controller=>"restaurants", :action=>"create"}, method: :post) do %>
-          <%= hidden_field_tag "restaurant[name]", x.name %>
-          <%= hidden_field_tag "restaurant[lat]", x.lat %>
-          <%= hidden_field_tag "restaurant[long]", x.lng %>
-          <%= hidden_field_tag "restaurant[place_id]", x.place_id %>
-          <%= hidden_field_tag "restaurant[address]", x.formatted_address %>
-          <%= hidden_field_tag "restaurant[rating]", x.rating %>
-          <%= hidden_field_tag "restaurant[price]", x.price_level %>
-      <%= submit_tag 'Add some Beers', name: nil %>
 
-      <% end %>
-      <br>
-      <br>
-      <br>
+        <%= form_tag({:controller=>"restaurants", :action=>"create"}, method: :post) do %>
+            <%= hidden_field_tag "restaurant[name]", x.name %>
+            <%= hidden_field_tag "restaurant[lat]", x.lat %>
+            <%= hidden_field_tag "restaurant[long]", x.lng %>
+            <%= hidden_field_tag "restaurant[place_id]", x.place_id %>
+            <%= hidden_field_tag "restaurant[location]", x.formatted_address %>
+            <%= submit_tag 'Add some Beers', name: nil %>
+        <% end %>
+      </div>
     <% end %>
+    </div>
   <% end %>
+</div>
+
 </body>
 </html>

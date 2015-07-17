@@ -2,13 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-html,body{
-  	height:100%;
-}
-
-body{
-  	padding-top:50px; /*padding for navbar*/
-}
 
 .navbar-custom .icon-bar {
 	background-color:#fff;
@@ -46,7 +39,7 @@ body{
 	height:100%;
 }
 
-#beer_map {
+#restaurant_map {
 	width:33.3333%;
     height:calc(100% - 0);
     position:absolute;
