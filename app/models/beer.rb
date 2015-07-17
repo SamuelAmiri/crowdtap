@@ -1,6 +1,6 @@
 class Beer < ActiveRecord::Base
-	has_many :beerrestaurants
-	has_many :restaurants, through: :beerrestaurants
+	has_many :beerrestaurants 
+	has_many :restaurants, through: :beerrestaurants 
 
 	# BreweryDB API search
 	# @param term is a string (beer name)

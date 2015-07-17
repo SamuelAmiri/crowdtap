@@ -46,7 +46,7 @@ class RestaurantsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@restaurant) do |restaurant, marker|
       marker.lat restaurant.lat
       marker.lng restaurant.long
-      marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{restaurant.address}"+"'>Get Directions With Google Maps</a>"
+      marker.infowindow "<a target='blank' href='https://www.google.com/maps/place/"+"#{restaurant.location}"+"'>Get Directions With Google Maps</a>"
       marker.json({ title: restaurant.name })
     end
 
@@ -69,7 +69,7 @@ class RestaurantsController < ApplicationController
   private
   	def restaurant_params
   		
-  		params.require(:restaurant).permit(:name, :lat, :long, :place_id, :address, :rating, :price, beer_ids:[])
+  		params.require(:restaurant).permit(:name, :lat, :long, :place_id, :location, :rating, :price)
 
   	end
 

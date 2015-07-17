@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715215732) do
+ActiveRecord::Schema.define(version: 20150717004306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150715215732) do
     t.datetime "updated_at",    null: false
   end
 
+  add_index "beerrestaurants", ["beer_id", "restaurant_id"], name: "index_beerrestaurants_on_beer_id_and_restaurant_id", unique: true, using: :btree
   add_index "beerrestaurants", ["beer_id"], name: "index_beerrestaurants_on_beer_id", using: :btree
   add_index "beerrestaurants", ["restaurant_id"], name: "index_beerrestaurants_on_restaurant_id", using: :btree
 
@@ -34,19 +35,21 @@ ActiveRecord::Schema.define(version: 20150715215732) do
     t.datetime "updated_at",   null: false
     t.string   "breweryDB_id"
     t.string   "labels"
-    t.string   "description"
+    t.text     "description"
   end
 
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.float    "lat"
     t.float    "long"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.text     "location"
+    t.text     "address"
+    t.text     "formatted_address"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "place_id"
     t.float    "price"
     t.float    "rating"
-    t.string   "address"
   end
 
   create_table "users", force: :cascade do |t|

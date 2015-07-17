@@ -38,10 +38,16 @@ class BeersController < ApplicationController
   # POST /beers.json
   def create
     @restaurant = Restaurant.find(params[:id])
-    @beer = Beer.find_or_create_by(beer_params)
+    @beer = Beer.where(beer_params).first_or_create 
           if @beer.save
-              @beer.restaurants << @restaurant
-              redirect_to restaurant_path(@restaurant.id)
+              begin
+                @beer.restaurants << @restaurant
+                redirect_to restaurant_path(@restaurant.id)
+              rescue
+                flash[:warning] = "The Beer already exists"
+                redirect_to restaurant_path(@restaurant.id)
+              end
+
           else
               render :show
           end
@@ -72,12 +78,10 @@ class BeersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_beer
       @beer = Beer.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def beer_params
       params.require(:beer).permit(:name, :brewery, :style, :breweryDB_id, :labels, :description, restaurant_ids:[])
     end
