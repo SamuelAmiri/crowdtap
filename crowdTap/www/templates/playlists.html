@@ -2,17 +2,16 @@
   <ion-content>
   	
     <div ng-click="initializeMap(1,'mexico city')"></div>
-    <div id="googleMap" style="width:500px;height:380px;"></div>
+    <div id="googleMap" style="width:100%;height:380px;"></div>
     <div id="beerSearchArea">
 		<div id="beerSearchBox" ng-hide="search_term">
-			<div ng-click="queryBrewDB()">{{beer.beerparam}}</div>
 			<form name="myForm">
 			  <label>
-			    <input type="text" name="input" placeholder="Beer" ng-model="beer.beerparam">
-			    <input type="text" name="input" placeholder="Location" ng-model="locparam">
-			    <button ng-click="queryBrewDB()">Search!</button>
+			    <input type="text" name="input" placeholder="Beer" ng-model="beer.beerparam" class="box">
+			    <input type="text" name="input" placeholder="Location" ng-model="beer.locparam" class="box">
 			  </label>
 			</form>			
+			<div class="button button-block button-positive" ng-click="queryBrewDB()">Search!</div>
 		</div>
 		<div class="beerChoices" ng-show="search_term">
 			<h3>Did you mean:</h3>
