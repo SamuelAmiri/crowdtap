@@ -1,15 +1,19 @@
 body {
-  padding-bottom: 40px;
   color: #5a5a5a;
 }
-
+button.navbar-toggle {
+    color: #ffffff;
+    margin-bottom: 0px !important;
+}
 .image { 
    position: relative; 
    width: 100vw;
    height: 90vh;
    overflow: hidden;
 }
-
+.navbar{
+  margin-bottom: 0px;
+}
 .caption h4 { 
    position: absolute; 
    top: 18vw; 
@@ -207,4 +211,11 @@ div.transbox p {
     line-height: 1.4;
   }
 
+}
+
+.img-circle-icon{
+  width: 100%;
+  border-radius: 400px;
+  -webkit-border-radius: 400px;
+  -moz-border-radius: 400px;
 }
