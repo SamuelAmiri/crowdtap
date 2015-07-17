@@ -33,11 +33,11 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Account <b class="caret"></b></a>
           <ul class="dropdown-menu">
           <% if current_user == true %>
-            <li><a href="/users/<%= current_user.id %>/edit">Edit Profile</a></li>
-            <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
+            <!-- <li><a href="/users/<%= current_user.id %>/edit">Edit Profile</a></li>
+            <li><a href="/users/<%= current_user.id %>">My Profile</a></li> -->
             <li><a href="/auth/logout">Log Out</a></li>
           <% else %>
-            <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
+            <!-- <li><a href="/users/<%= current_user.id %>">My Profile</a></li> -->
             <li><a href="/logout">Log Out</a></li> 
           <% end %>
           </ul>
