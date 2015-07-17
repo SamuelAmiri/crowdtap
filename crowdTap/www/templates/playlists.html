@@ -3,25 +3,25 @@
   	
     <div ng-click="initializeMap(1,'mexico city')"></div>
     <div id="googleMap" style="width:500px;height:380px;"></div>
-  </ion-content>
-</ion-view>
-	<!-- <div id="googleMap" style="width:500px;height:380px;"></div>
-	<div id="beerSearchArea">
-		<div id="beerSearchBox" ng-hide="BeerCtrl.search_term">
+    <div id="beerSearchArea">
+		<div id="beerSearchBox" ng-hide="search_term">
+			<div ng-click="queryBrewDB()">{{beer.beerparam}}</div>
 			<form name="myForm">
 			  <label>
-			    <input type="text" name="input" placeholder="Beer" ng-model="BeerCtrl.beerparam">
-			    <input type="text" name="input" placeholder="Location" ng-model="BeerCtrl.locparam">
-			    <button ng-click="BeerCtrl.queryBrewDB()">Search!</button>
+			    <input type="text" name="input" placeholder="Beer" ng-model="beer.beerparam">
+			    <input type="text" name="input" placeholder="Location" ng-model="locparam">
+			    <button ng-click="queryBrewDB()">Search!</button>
 			  </label>
 			</form>			
 		</div>
-		<div class="beerChoices" ng-show="BeerCtrl.search_term">
+		<div class="beerChoices" ng-show="search_term">
 			<h3>Did you mean:</h3>
-			<div class="beerChoice" ng-repeat="beer in BeerCtrl.beers">
+			<div class="beerChoice" ng-repeat="beer in beers">
 
-				<img class="beerLogo" ng-src={{beer.labels.medium}} ng-click="BeerCtrl.selectBeer($index)">
+				<img class="beerLogo" ng-src={{beer.labels.medium}} ng-click="selectBeer($index)">
 			</div>
 		</div>
 	</div>
-	</body> -->
+  </ion-content>
+</ion-view>
+	
