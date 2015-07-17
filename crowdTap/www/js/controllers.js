@@ -45,6 +45,7 @@ angular.module('starter.controllers', [])
 
 .controller('PlaylistsCtrl', function($http,$scope,$stateParams){
     $scope.beer = {};
+
     $http.get("https://crowdtap.herokuapp.com/api/beers", { cache: true }).then(function(results){
       $scope.getBeers = results.data
     });
@@ -73,7 +74,7 @@ angular.module('starter.controllers', [])
       $http.get(url).then(function(results){
           $scope.results = results.data
           console.log($scope.results)
-      initialize_my_map($scope.results,$scope.locparam)
+      initialize_my_map($scope.results,$scope.beer.locparam)
       })
     }
     var url = "https://crowdtap.herokuapp.com/api/restaurants/"  

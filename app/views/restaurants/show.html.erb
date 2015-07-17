@@ -15,10 +15,14 @@
 	<h2> <%= @restaurant.name %></h2>
 	<h3> <%= @restaurant.location %></h3>
 
+	<h2> <%= @restaurant.name %></h2>
 	<%= form_tag({:controller=>"restaurants", :action=>"show"}, method: :get) do %>
 		<%= text_field_tag :search_term %>
 	    <%= submit_tag 'Search for a Beer', name: nil %>
 	<% end %>
+
+
+
 
 	<% if @beer.present?%>
 		<% if @beer['data'].present? %>
